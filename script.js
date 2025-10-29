@@ -3,24 +3,24 @@ divPiano.className = 'piano';
 document.body.appendChild(divPiano);
 
 const notes = [
-    { note: 'D', white: true },
-    { note: 'R', white: false },
-    { note: 'F', white: true },
-    { note: 'T', white: false },
-    { note: 'G', white: true },
-    { note: 'H', white: true },
-    { note: 'Y', white: false },
-    { note: 'J', white: true },
-    { note: 'U', white: false },
-    { note: 'K', white: true },
-    { note: 'I', white: false },
-    { note: 'L', white: true },
+    { note: 'C', white: true, keyboard: 'A' },
+    { note: 'C#', white: false, keyboard: 'W' },
+    { note: 'D', white: true, keyboard: 'S' },
+    { note: 'D#', white: false, keyboard: 'E' },
+    { note: 'E', white: true, keyboard: 'D' },
+    { note: 'F', white: true, keyboard: 'F' },
+    { note: 'F#', white: false, keyboard: 'T' },
+    { note: 'G', white: true, keyboard: 'G' },
+    { note: 'G#', white: false, keyboard: 'Y' },
+    { note: 'A', white: true, keyboard: 'H' },
+    { note: 'A#', white: false, keyboard: 'U' },
+    { note: 'B', white: true, keyboard: 'J' },
 ];
 
 notes.forEach(note => {
     let key = document.createElement('div');
     key.className = note.white ?  'key key-white' : 'key key-black';
     key.dataset.note = note.note;
-    key.innerHTML = note.note
+    key.innerHTML = note.keyboard
     divPiano.appendChild(key);
 });
