@@ -3,18 +3,18 @@ divPiano.className = 'piano';
 document.body.appendChild(divPiano);
 
 const notes = [
-    { note: 'C', white: true },
-    { note: 'C#', white: false },
     { note: 'D', white: true },
-    { note: 'D#', white: false },
-    { note: 'E', white: true },
+    { note: 'R', white: false },
     { note: 'F', white: true },
-    { note: 'F#', white: false },
+    { note: 'T', white: false },
     { note: 'G', white: true },
-    { note: 'G#', white: false },
-    { note: 'A', white: true },
-    { note: 'A#', white: false },
-    { note: 'B', white: true },
+    { note: 'H', white: true },
+    { note: 'Y', white: false },
+    { note: 'J', white: true },
+    { note: 'U', white: false },
+    { note: 'K', white: true },
+    { note: 'I', white: false },
+    { note: 'L', white: true },
 ];
 
 notes.forEach(note => {

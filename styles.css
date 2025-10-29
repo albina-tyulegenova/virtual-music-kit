@@ -247,6 +247,19 @@ body {
     margin-left: -35px;
     margin-right: -35px;
     z-index: 2;
-
-
 }
+
+.key-white:hover {
+    background-color: #d3d3d3;
+}
+.key-black:hover {
+    background-color: #808080;
+}
+
+.key-white.active {
+    background-color:#b7a122 ;
+}
+.key-black.active {
+    background-color: #b7a122;
+}
+
