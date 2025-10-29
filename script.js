@@ -1,19 +1,19 @@
 let divPiano = document.createElement('div');
 divPiano.className = 'piano';
-document.body.appendChild(divPiano);
+document.body.append(divPiano);
 
 const notes = [
     { note: 'C', white: true, keyboard: 'A' },
-    { note: 'C#', white: false, keyboard: 'W' },
+    { note: 'Cs', white: false, keyboard: 'W' },
     { note: 'D', white: true, keyboard: 'S' },
-    { note: 'D#', white: false, keyboard: 'E' },
+    { note: 'Ds', white: false, keyboard: 'E' },
     { note: 'E', white: true, keyboard: 'D' },
     { note: 'F', white: true, keyboard: 'F' },
-    { note: 'F#', white: false, keyboard: 'T' },
+    { note: 'Fs', white: false, keyboard: 'T' },
     { note: 'G', white: true, keyboard: 'G' },
-    { note: 'G#', white: false, keyboard: 'Y' },
+    { note: 'Gs', white: false, keyboard: 'Y' },
     { note: 'A', white: true, keyboard: 'H' },
-    { note: 'A#', white: false, keyboard: 'U' },
+    { note: 'As', white: false, keyboard: 'U' },
     { note: 'B', white: true, keyboard: 'J' },
 ];
 
@@ -22,5 +22,29 @@ notes.forEach(note => {
     key.className = note.white ?  'key key-white' : 'key key-black';
     key.dataset.note = note.note;
     key.innerHTML = note.keyboard
-    divPiano.appendChild(key);
+    divPiano.append(key);
 });
+
+notes.forEach(note => {
+    let sound = document.createElement('audio');
+    sound.id = note.note;
+    sound.src = `assets/sounds/${note.note}.mp3`;
+    document.body.append(sound);
+});
+
+let keys = document.querySelectorAll('.key');
+
+keys.forEach(k => {
+    k.addEventListener('click', playNote);
+});
+
+function playNote(e) {
+    let key = e.target;
+    let note = document.getElementById(key.dataset.note)
+    key.classList.add('active');
+    note.currentTime = 0;
+    note.play();
+    setTimeout(() => {
+        key.classList.remove('active'); 
+    }, 200);
+}
