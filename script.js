@@ -3,18 +3,18 @@ divPiano.className = 'piano';
 document.body.append(divPiano);
 
 const notes = [
-    { note: 'C', white: true, keyboard: 'A' },
-    { note: 'Cs', white: false, keyboard: 'W' },
-    { note: 'D', white: true, keyboard: 'S' },
-    { note: 'Ds', white: false, keyboard: 'E' },
-    { note: 'E', white: true, keyboard: 'D' },
-    { note: 'F', white: true, keyboard: 'F' },
-    { note: 'Fs', white: false, keyboard: 'T' },
-    { note: 'G', white: true, keyboard: 'G' },
-    { note: 'Gs', white: false, keyboard: 'Y' },
-    { note: 'A', white: true, keyboard: 'H' },
-    { note: 'As', white: false, keyboard: 'U' },
-    { note: 'B', white: true, keyboard: 'J' },
+    { note: 'C', white: true, keyCode: 'KeyA', keyboard: 'A' },
+    { note: 'Cs', white: false, keyCode: 'KeyW', keyboard: 'W' },
+    { note: 'D', white: true, keyCode: 'KeyS', keyboard: 'S' },
+    { note: 'Ds', white: false, keyCode: 'KeyE', keyboard: 'E' },
+    { note: 'E', white: true, keyCode: 'KeyD', keyboard: 'D' },
+    { note: 'F', white: true, keyCode: 'KeyF', keyboard: 'F' },
+    { note: 'Fs', white: false, keyCode: 'KeyT', keyboard: 'T' },
+    { note: 'G', white: true, keyCode: 'KeyG', keyboard: 'G' },
+    { note: 'Gs', white: false, keyCode: 'KeyY', keyboard: 'Y' },
+    { note: 'A', white: true, keyCode: 'KeyH', keyboard: 'H' },
+    { note: 'As', white: false, keyCode: 'KeyU', keyboard: 'U' },
+    { note: 'B', white: true, keyCode: 'KeyJ', keyboard: 'J' },
 ];
 
 notes.forEach(note => {
@@ -32,19 +32,32 @@ notes.forEach(note => {
     document.body.append(sound);
 });
 
-let keys = document.querySelectorAll('.key');
+function playNote(note) {
+    let audio = document.getElementById(note);    
+    audio.currentTime = 0;
+    audio.play();
 
-keys.forEach(k => {
-    k.addEventListener('click', playNote);
-});
-
-function playNote(e) {
-    let key = e.target;
-    let note = document.getElementById(key.dataset.note)
+    const key = document.querySelector(`[data-note="${note}"]`)
     key.classList.add('active');
-    note.currentTime = 0;
-    note.play();
     setTimeout(() => {
         key.classList.remove('active'); 
     }, 200);
 }
+
+let keys = document.querySelectorAll('.key');
+
+keys.forEach(k => {
+    k.addEventListener('click', (e) => {
+        if (e.target.classList.contains('key')) {
+            playNote(e.target.dataset.note)
+        }
+    });
+});
+
+document. addEventListener('keydown', (e) => {
+    const pressedKey = e.code;
+    const note = notes.find(n => n.keyCode === pressedKey);
+    if (note) {
+        playNote(note.note);
+    }
+});
