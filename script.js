@@ -21,7 +21,7 @@ notes.forEach(note => {
     let key = document.createElement('div');
     key.className = note.white ?  'key key-white' : 'key key-black';
     key.dataset.note = note.note;
-    key.innerHTML = note.keyboard
+    key.innerHTML = note.keyboard;
     divPiano.append(key);
 });
 
@@ -61,3 +61,12 @@ document. addEventListener('keydown', (e) => {
         playNote(note.note);
     }
 });
+
+keys.forEach(key => {
+    const editImg = document.createElement('img');
+    editImg.className = 'edit-img'
+    editImg.src = 'assets/img/edit.png';
+    editImg.alt = 'Edit key';
+    editImg.title = 'Edit key'
+    key.append(editImg)
+})
