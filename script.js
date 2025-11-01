@@ -54,7 +54,7 @@ keys.forEach(k => {
     });
 });
 
-document. addEventListener('keydown', (e) => {
+document.addEventListener('keydown', (e) => {
     const pressedKey = e.code;
     const note = notes.find(n => n.keyCode === pressedKey);
     if (note) {
@@ -69,4 +69,50 @@ keys.forEach(key => {
     editImg.alt = 'Edit key';
     editImg.title = 'Edit key'
     key.append(editImg)
+})
+
+let editForm = document.createElement('form');
+editForm.className = 'edit-form';
+document.body.append(editForm);
+
+let editInput = document.createElement('input');
+editInput.className = 'edit-input';
+editInput.type = 'text';
+editForm.append(editInput);
+
+let editImages = document.querySelectorAll('.edit-img');
+let currentNote = null;
+
+editImages.forEach(img => img.addEventListener('click', () => {
+    currentNote = img.parentElement.dataset.note;
+    editInput.placeholder = notes.find(n => n.note === currentNote).keyboard;
+    editForm.classList.add('active');
+    editInput.focus();
+}));
+
+editForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    let newKey = editInput.value.toUpperCase();
+    let newKeyCode = 'Key' + newKey;
+
+    if (notes.some(n => n.keyCode === newKeyCode && n.note !== currentNote)) {
+        alert("This key is already use!");
+        editInput.value = null;
+        return;
+    };
+
+    const letter = newKey.trim();
+    if (!/^[A-Z]$/.test(letter)) {
+        alert("Enter only one letter A-Z");
+        editInput.value = null;
+        return;
+    }
+
+    let noteObj = notes.find(n => n.note === currentNote);
+    noteObj.keyCode = newKeyCode;
+
+    document.querySelector(`[data-note="${currentNote}"]`).firstChild.textContent = newKey;
+    editInput.value = null;
+    editForm.classList.remove('active');
 })

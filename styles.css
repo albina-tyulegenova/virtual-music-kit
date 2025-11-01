@@ -211,6 +211,10 @@ svg * {
 
 body {
     background-color: bisque;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
 }
 .piano {
     width: 700px;
@@ -270,4 +274,26 @@ body {
 
 .edit-img.active {
     display: none;
+}
+
+.edit-form {
+    display: none;
+    display: none;
+}
+
+.edit-form.active {
+    display: block;
+    margin-bottom: 50px;
+}
+
+.edit-input.active {
+    width: 500px;
+    height: 100px;
+    font-size: 32px;
+    font-family: sans-serif;
+    font-weight: bold;
+    border: 1px solid #000;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: inset -2px -2px 5px #000;
 }
