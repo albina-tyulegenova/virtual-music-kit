@@ -115,4 +115,11 @@ editForm.addEventListener('submit', (e) => {
     document.querySelector(`[data-note="${currentNote}"]`).firstChild.textContent = newKey;
     editInput.value = null;
     editForm.classList.remove('active');
-})
+});
+
+let sequenceInput = document.createElement('input');
+sequenceInput.className = 'sequence-input';
+sequenceInput.type = 'text';
+sequenceInput.placeholder = 'Enter the sequence of notes for your melody';
+document.body.append(sequenceInput);
+
