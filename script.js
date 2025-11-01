@@ -123,3 +123,15 @@ sequenceInput.type = 'text';
 sequenceInput.placeholder = 'Enter the sequence of notes for your melody';
 document.body.append(sequenceInput);
 
+//список разрешенных клавиш
+function getAllowedkeys() {
+    return notes.map(n => n.keyboard);
+};
+sequenceInput.addEventListener('input', () => {
+    let allowed = getAllowedkeys();
+    let maxLength = 2 * notes.length;
+    let value = sequenceInput.value.toUpperCase();
+    value = [...value].filter(char => allowed.includes(char)).join('');
+    value = value.substring(0, maxLength);
+    sequenceInput.value = value;
+})
