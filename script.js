@@ -127,7 +127,7 @@ document.body.append(sequenceSection);
 let sequenceInput = document.createElement('input');
 sequenceInput.className = 'sequence-input';
 sequenceInput.type = 'text';
-sequenceInput.placeholder = 'Enter the sequence of notes for your melody';
+sequenceInput.placeholder = 'Enter the sequence of notes';
 sequenceSection.append(sequenceInput);
 
 //список разрешенных клавиш

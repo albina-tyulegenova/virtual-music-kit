@@ -217,9 +217,8 @@ body {
     flex-direction: column;
 }
 .piano {
-    width: 700px;
     height: 400px;
-    margin: 50px auto;
+    margin: 50px auto 0px;
     display: flex;
 }
 
@@ -229,7 +228,6 @@ body {
     border: 2px solid #000;
     border-radius: 0 0 5px 5px;
     cursor: pointer;
-    box-shadow: inset -2px -2px 5px #000;
     text-align: center;
     font-size: 40px;
     font-family: sans-serif;
@@ -238,8 +236,9 @@ body {
     user-select: none;
     transition: 0.1s;
     display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: end;
+    align-items: center;
 }
 
 .key-black {
@@ -283,7 +282,6 @@ body {
 
 .edit-form.active {
     display: block;
-    margin-bottom: 50px;
 }
 
 .edit-input.active {
@@ -324,3 +322,138 @@ body {
     cursor: pointer;
     box-shadow: inset -2px -2px 5px #000;
 }
+
+@media(max-width: 768px) {
+    .key {
+        width: 70px;
+        height: 100%;
+        border: 0.5px solid #000;
+        font-size: 22px;
+    }
+
+    .key-black {
+        width: 50px;
+        font-size: 18px;
+        height: 60%;
+        margin-left: -25px;
+        margin-right: -25px;
+        z-index: 2;
+    }
+
+    .sequence {
+        flex-direction: column;
+        font-size: 20px;
+    }
+    .sequence-input {
+        width: 350px;
+        height: 60px;
+    }
+    .play-btn {
+        width: 100px;
+        height: 60px;
+        font-size: 16px;
+    }
+}
+
+@media(max-width: 600px) {
+    .key {
+        width: 50px;
+    }
+
+    .key-black {
+        width: 36px;
+        margin-left: -18px;
+        margin-right: -18px;
+    }
+
+    .edit-img {
+        width: 24px;
+        height: 24px;
+    }
+}
+
+@media(max-width: 400px) {
+    .key {
+        width: 42px;
+    }
+
+    .key-black {
+        width: 32px;
+        font-size: 18px;
+        margin-left: -16px;
+        margin-right: -16px;
+    }
+
+    .sequence {
+        font-size: 16px;
+    }
+    .sequence-input {
+        width: 280px;
+        height: 50px;
+    }
+    .play-btn {
+        height: 50px;
+    }
+}
+/*
+@media (max-width: 768px) {
+  body {
+    justify-content: flex-start;
+    padding-top: 20px;
+  }
+
+  .piano {
+    height: 260px;
+    gap: 0.1px;
+  }
+
+  .key {
+    width: 50px;
+    font-size: 22px;
+  }
+
+  .key-black {
+    width: 36px;
+    font-size: 18px;
+    margin-left: -18px;
+    margin-right: -18px;
+  }
+
+  .sequence {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .sequence-input,
+  .play-btn {
+    width: 90%;
+    height: 60px;
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 600px) {
+
+  .piano {
+    height: auto;
+  }
+
+  .key {
+    width: 9vw;
+    height: 38vw;
+    font-size: 4vw;
+  }
+
+  .key-black {
+    width: 7vw;
+    height: 26vw;
+    font-size: 3.5vw;
+  }
+
+  .sequence-input,
+  .play-btn {
+    width: 95%;
+    height: 55px;
+    font-size: 16px;
+  }
+}*/
