@@ -116,12 +116,15 @@ editForm.addEventListener('submit', (e) => {
     editInput.value = null;
     editForm.classList.remove('active');
 });
+let sequenceSection = document.createElement('div');
+sequenceSection.className = 'sequence';
+document.body.append(sequenceSection);
 
 let sequenceInput = document.createElement('input');
 sequenceInput.className = 'sequence-input';
 sequenceInput.type = 'text';
 sequenceInput.placeholder = 'Enter the sequence of notes for your melody';
-document.body.append(sequenceInput);
+sequenceSection.append(sequenceInput);
 
 //список разрешенных клавиш
 function getAllowedKeys() {
@@ -134,4 +137,10 @@ sequenceInput.addEventListener('input', () => {
     value = [...value].filter(char => allowed.includes(char)).join('');
     value = value.substring(0, maxLength);
     sequenceInput.value = value;
-})
+});
+
+//кнопка воспроизведения
+let playBtn = document.createElement('button');
+playBtn.className = 'play-btn';
+playBtn.textContent = 'Play sequence';
+sequenceSection.append(playBtn);
