@@ -54,7 +54,11 @@ keys.forEach(k => {
     });
 });
 
+let isPlayingSequence = false; //для автопроигрывания
 document.addEventListener('keydown', (e) => {
+    if (isPlayingSequence) {
+        return;
+    }
     const pressedKey = e.code;
     const note = notes.find(n => n.keyCode === pressedKey);
     if (note) {
@@ -144,3 +148,45 @@ let playBtn = document.createElement('button');
 playBtn.className = 'play-btn';
 playBtn.textContent = 'Play sequence';
 sequenceSection.append(playBtn);
+
+//блокировка интерфейса
+function setInteractive(enabled) {
+    keys.forEach(k => k.style.pointerEvents = enabled ? 'auto' : 'none');
+    sequenceInput.disabled = !enabled;
+    playBtn.disabled = !enabled;
+    isPlayingSequence = !enabled;
+    if (!enabled) {
+        playBtn.classList.add('disabled');
+        sequenceInput.classList.add('disabled')
+    } else {
+        playBtn.classList.remove('disabled');
+        sequenceInput.classList.remove('disabled')
+    }
+}
+
+//воспризведение последовательности
+function playSequence () {
+    let sequence = sequenceInput.value.toUpperCase();
+    if (!sequence) return;
+
+    let index = 0;
+    setInteractive(false);
+    
+    function playNext() {
+        if (index >= sequence.length) {
+            setInteractive(true);
+            return;
+        };
+
+        let noteObj = notes.find(n => n.keyboard === sequence[index]);
+        if (noteObj) {
+            playNote(noteObj.note);
+        }
+
+        index++;
+        setTimeout(playNext, 500)
+    }
+    playNext();
+}
+
+playBtn.addEventListener('click', playSequence);
